@@ -1,32 +1,34 @@
-const cardsDiv = document.getElementById('cards-div');
+const cardsDiv = document.getElementById('card-div');
 const submitBtn = document.getElementsByClassName('submit')[0];
+const addBookBtn = document.getElementById('add-book');
 
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, arrayPosition) {
   this.title = title,
   this.author = author,
   this.pages = pages,
   this.read = read
+  this.arrayPosition = arrayPosition;
 
-  
-  let deleteArray;
   const newCard = document.createElement('div');
   const deleteBtn = document.createElement('button');
 
   this.createCard = function (){
     newCard.classList.add('card');
-    newCard.textContent = 'Title: ' + title + '\n Author:' + author + '\n Pages:' + pages + '\nRead: ' + read;
+    const cardContent = document.createElement('p');
+    cardContent.classList.add('card-content');
+    cardContent.textContent = 'Title: ' + this.title + '\n Author:' + this.author + '\n Pages:' + this.pages + '\n Read: ' + this.read;
+    newCard.appendChild(cardContent);
     cardsDiv.appendChild(newCard);
   }
 
-  this.createDeleteBtn = function(){
+  this.createDeleteBtn = function(){ //adds delete button
     deleteBtn.innerHTML = "Delete Book";
     deleteBtn.classList.add('delete-button');
     newCard.appendChild(deleteBtn);
     deleteBtn.addEventListener('click', () => {
-      deleteArray = Array.from(cardsDiv.childNodes);
-      console.log(this.author);
+     cardsDiv.removeChild(newCard); //removes the newCard since it is a child of cardsDiv
     });
   }
 
@@ -49,8 +51,12 @@ newBookBtn.addEventListener('click', () => {
 });
 */
 
+addBookBtn.addEventListener('click', () => {
+  document.documentElement.style.setProperty('--display', 'block');
+});
+
 submitBtn.addEventListener('click', () => {
-  let title = document.getElementById('input-title').value; //.value is the input
+  const title = document.getElementById('input-title').value; //.value is the input
   const author = document.getElementById('input-author').value;
   const pages = document.getElementById('input-pages').value;
  
@@ -61,14 +67,11 @@ submitBtn.addEventListener('click', () => {
   
   myLibrary.push(title);
   console.log(myLibrary);
-  console.log(myLibrary[myLibrary.length-1]);
-  myLibrary[myLibrary.length-1] = new Book(title, author, pages, readOrNot); //creates an object based on name of title that is store in array
+  myLibrary[myLibrary.length-1] = new Book(title, author, pages, readOrNot, myLibrary.length-1); //creates an object based on name of title that is store in array
   myLibrary[myLibrary.length-1].createCard();
-  console.log(myLibrary);
-  console.log(myLibrary[myLibrary.length-1]);
-  console.log("Book title is " + myLibrary[myLibrary.length-1].title + "\nPages is " + myLibrary[myLibrary.length-1].pages);
 
   myLibrary[myLibrary.length-1].createDeleteBtn();
+  document.documentElement.style.setProperty('--display', 'none');
   
 });
 
