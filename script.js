@@ -16,10 +16,26 @@ function Book(title, author, pages, read, arrayPosition) {
 
   this.createCard = function (){
     newCard.classList.add('card');
-    const cardContent = document.createElement('p');
-    cardContent.classList.add('card-content');
-    cardContent.textContent = 'Title: ' + this.title + '\n Author:' + this.author + '\n Pages:' + this.pages + '\n Read: ' + this.read;
-    newCard.appendChild(cardContent);
+    const cardTitle = document.createElement('h1');
+    cardTitle.classList.add('title');
+    cardTitle.textContent = this.title.toUpperCase();
+    newCard.appendChild(cardTitle);
+    
+    const authorInfo = document.createElement('li');
+    authorInfo.classList.add('book-info');
+    authorInfo.textContent = 'Author: ' + this.author;
+    newCard.appendChild(authorInfo);
+    
+    const pagesInfo = document.createElement('li');
+    pagesInfo.classList.add('book-info');
+    pagesInfo.textContent = 'Pages: ' + this.pages;
+    newCard.appendChild(pagesInfo);
+
+    const readInfo = document.createElement('li');
+    readInfo.classList.add('book-info');
+    readInfo.textContent = 'Finished Reading? ' + this.read;
+    newCard.appendChild(readInfo);
+
     cardsDiv.appendChild(newCard);
   }
 
@@ -36,20 +52,6 @@ function Book(title, author, pages, read, arrayPosition) {
     
   }
 }
-
-/*
-newBookBtn.addEventListener('click', () => {
-    let input = prompt("Enter Book Title");
-    myLibrary.push(input);
-    console.log(myLibrary);
-
-    const newCard = document.createElement('div');
-    newCard.classList.add('card');
-    newCard.textContent = input;
-    cardsDiv.appendChild(newCard);
-
-});
-*/
 
 addBookBtn.addEventListener('click', () => {
   document.documentElement.style.setProperty('--display', 'block');
