@@ -6,7 +6,7 @@
     <body>
         <script src="script.js" defer></script>
         <main>
-            <div id = "card-div" class = "cards-div"></div>
+            <header>My Library</header>
             <button id = "add-book">+</button>
             <div id="book-form">
                 <form>
@@ -15,12 +15,16 @@
                     <input class = "input-bar" id = "input-author" type="text" placeholder="Author">
                     <input class = "input-bar" id = "input-pages" type="text" placeholder="Pages">
                     <label>
-                        <input id = "read" type = "radio" name = "read" value = "read">Read
-                        <input id ="notRead" type = "radio" name = "read" value = "notRead">Not Read
+                        <input class = "radio-btn" id = "read" type = "radio" name = "read" value = "read">Read
+                        <input class = "radio-btn" id ="notRead" type = "radio" name = "read" value = "notRead">Not Read
                     </label>
-                    <button class = "submit" type = "button">Submit</button>
+                    <div class="submit-cancel-div">
+                        <button class = "cancel" type = "button">Cancel</button>
+                        <button class = "submit" type = "button">Submit</button>
+                    </div>
                 </form>
             </div>
+            <div id = "card-div" class = "cards-div"></div>
         </main>
     </body>
 

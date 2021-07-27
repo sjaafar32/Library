@@ -1,5 +1,6 @@
 const cardsDiv = document.getElementById('card-div');
 const submitBtn = document.getElementsByClassName('submit')[0];
+const cancelBtn = document.getElementsByClassName('cancel')[0];
 const addBookBtn = document.getElementById('add-book');
 
 let myLibrary = [];
@@ -47,13 +48,12 @@ function Book(title, author, pages, read, arrayPosition) {
      cardsDiv.removeChild(newCard); //removes the newCard since it is a child of cardsDiv
     });
   }
-
-  this.deleteCard = function (){
-    
-  }
 }
 
 addBookBtn.addEventListener('click', () => {
+  title = '';
+  author = '';
+  pages = '';
   document.documentElement.style.setProperty('--display', 'block');
 });
 
@@ -75,6 +75,13 @@ submitBtn.addEventListener('click', () => {
   myLibrary[myLibrary.length-1].createDeleteBtn();
   document.documentElement.style.setProperty('--display', 'none');
   
+  title = "";
+  author = "";
+  pages = "";
+});
+
+cancelBtn.addEventListener('click', () => {
+  document.documentElement.style.setProperty('--display', 'none');
 });
 
 function addBookToLibrary() {
