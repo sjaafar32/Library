@@ -15,7 +15,7 @@ function Book(title, author, pages, read, arrayPosition) {
   const newCard = document.createElement('div');
   const deleteBtn = document.createElement('button');
 
-  this.createCard = function (){
+  this.createCard = function (){ //for each component of the card, an element is created, a class is added, the content is added, and it is appended to its parent
     newCard.classList.add('card');
     const cardTitle = document.createElement('h1');
     cardTitle.classList.add('title');
@@ -32,10 +32,18 @@ function Book(title, author, pages, read, arrayPosition) {
     pagesInfo.textContent = 'Pages: ' + this.pages;
     newCard.appendChild(pagesInfo);
 
-    const readInfo = document.createElement('li');
-    readInfo.classList.add('book-info');
-    readInfo.textContent = 'Finished Reading? ' + this.read;
-    newCard.appendChild(readInfo);
+    const readBtn = document.createElement('button'); //this button flips the text between 'read' and 'not read'
+    readBtn.type = 'button';
+    readBtn.classList.add('read-btn');
+
+    if(this.read =='No'){readBtn.textContent = 'Not Read';}
+    else if(this.read == 'Yes'){readBtn.textContent = 'Read';}
+
+    readBtn.onclick = function() {
+      if(readBtn.innerHTML == 'Read'){readBtn.textContent = 'Not Read';}
+      else if(readOrNot == 'Not Read'){readBtn.textContent = 'Read';}
+    };
+    newCard.appendChild(readBtn);
 
     cardsDiv.appendChild(newCard);
   }
@@ -51,10 +59,7 @@ function Book(title, author, pages, read, arrayPosition) {
 }
 
 addBookBtn.addEventListener('click', () => {
-  title = '';
-  author = '';
-  pages = '';
-  document.documentElement.style.setProperty('--display', 'block');
+  document.documentElement.style.setProperty('--display', 'block'); //this makes the form visible after the add button is clicked
 });
 
 submitBtn.addEventListener('click', () => {
@@ -73,17 +78,20 @@ submitBtn.addEventListener('click', () => {
   myLibrary[myLibrary.length-1].createCard();
 
   myLibrary[myLibrary.length-1].createDeleteBtn();
-  document.documentElement.style.setProperty('--display', 'none');
-  
-  title = "";
-  author = "";
-  pages = "";
+  document.documentElement.style.setProperty('--display', 'none'); //this makes the form disappear after the submit button is clicked
+
+  document.getElementById('input-title').value = ''; //sets the values of the inputs to blank so next time the form is opened, the textbox is blank
+  document.getElementById('input-author').value = '';
+  document.getElementById('input-pages').value = '';
+  document.getElementById('read').checked = false; //this unchecks the radio buttons
+  document.getElementById('notRead').checked = false;
 });
 
 cancelBtn.addEventListener('click', () => {
-  document.documentElement.style.setProperty('--display', 'none');
+  document.documentElement.style.setProperty('--display', 'none'); //this makes the form disappear after the cancel button is clicked
+  document.getElementById('input-title').value = '';
+  document.getElementById('input-author').value = '';
+  document.getElementById('input-pages').value = '';
+  document.getElementById('read').checked = false;
+  document.getElementById('notRead').checked = false;
 });
-
-function addBookToLibrary() {
-
-}

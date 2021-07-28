@@ -127,7 +127,8 @@ label {
 }
 
 .cards-div {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 35rem);
 }
 
 .title {
@@ -149,7 +150,8 @@ label {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30rem;
+    max-width: 30rem;
+    max-height: 33rem;
     border-radius: 10px;
     background-color: rgb(145, 226, 250);
     margin: 1rem;
@@ -158,9 +160,25 @@ label {
 .book-info {
     height: 50px;
     width: 90%;
-    font-size: 23px;
+    font-size: 2.3rem;
     font-weight: bold;
     color: white;
+}
+
+.read-btn {
+    height: 40px;
+    width: 150px;
+    border-style: none;
+    border-radius: 5%;
+    background-color: rgb(192, 192, 192);
+    margin-bottom: 10px;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.read-btn:hover {
+    background-color: rgb(209, 209, 209);
 }
 
 .card:hover{
@@ -184,5 +202,5 @@ label {
 }
 
 .delete-button:hover {
-    background-color: rgb(255, 80, 80);
+    background-color: rgba(253, 74, 74, 0.89);
 }
