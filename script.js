@@ -40,8 +40,8 @@ function Book(title, author, pages, read, arrayPosition) {
     else if(this.read == 'Yes'){readBtn.textContent = 'Read';}
 
     readBtn.onclick = function() {
-      if(readBtn.innerHTML == 'Read'){readBtn.textContent = 'Not Read';}
-      else if(readOrNot == 'Not Read'){readBtn.textContent = 'Read';}
+      if(readBtn.textContent == 'Read'){readBtn.textContent = 'Not Read';}
+      else if(readBtn.textContent == 'Not Read'){readBtn.textContent = 'Read';}
     };
     newCard.appendChild(readBtn);
 
