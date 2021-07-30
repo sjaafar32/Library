@@ -66,7 +66,14 @@ submitBtn.addEventListener('click', () => {
   const title = document.getElementById('input-title').value; //.value is the input
   const author = document.getElementById('input-author').value;
   const pages = document.getElementById('input-pages').value;
- 
+
+  if(title == '' || author == '' || pages == ''){alert('Do not leave any of the fields blank'); return;}
+  
+  if(document.getElementById('read').checked == false &&
+  document.getElementById('notRead').checked == false){
+    alert(`Please select either "Read" or "Not Read"`);
+    return;
+  } 
 
   let readOrNot;
   if(document.getElementById('read').checked == true){readOrNot = 'Yes';}
