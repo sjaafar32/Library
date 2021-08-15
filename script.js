@@ -5,18 +5,25 @@ const addBookBtn = document.getElementById('add-book');
 
 let myLibrary = [];
 
-function Book(title, author, pages, read, arrayPosition) {
+let newCard;
+
+class Book {
+
+  constructor(title, author, pages, read, arrayPosition, newCard){
   this.title = title,
   this.author = author,
   this.pages = pages,
-  this.read = read
-  this.arrayPosition = arrayPosition;
+  this.read = read,
+  this.arrayPosition = arrayPosition
+  this.newCard = newCard;
+  }
 
-  const newCard = document.createElement('div');
-  const deleteBtn = document.createElement('button');
+  
 
-  this.createCard = function (){ //for each component of the card, an element is created, a class is added, the content is added, and it is appended to its parent
+  createCard = () => { //for each component of the card, an element is created, a class is added, the content is added, and it is appended to its parent
+    
     newCard.classList.add('card');
+
     const cardTitle = document.createElement('h1');
     cardTitle.classList.add('title');
     cardTitle.textContent = this.title.toUpperCase();
@@ -32,6 +39,10 @@ function Book(title, author, pages, read, arrayPosition) {
     pagesInfo.textContent = 'Pages: ' + this.pages;
     newCard.appendChild(pagesInfo);
 
+
+
+
+
     const readBtn = document.createElement('button'); //this button flips the text between 'read' and 'not read'
     readBtn.type = 'button';
     readBtn.classList.add('read-btn');
@@ -46,16 +57,23 @@ function Book(title, author, pages, read, arrayPosition) {
     newCard.appendChild(readBtn);
 
     cardsDiv.appendChild(newCard);
+
+    console.log(cardsDiv.childNodes);
+    
+    }
+
+    createDeleteBtn = () => { //adds delete button
+      let deleteBtn = document.createElement('button');
+      deleteBtn.innerHTML = "Delete Book";
+      deleteBtn.classList.add('delete-button');
+      newCard.appendChild(deleteBtn);
+      deleteBtn.addEventListener('click', () => {
+       cardsDiv.removeChild(this.newCard); //removes the newCard since it is a child of cardsDiv
+       console.log(cardsDiv.childNodes);
+      });
   }
 
-  this.createDeleteBtn = function(){ //adds delete button
-    deleteBtn.innerHTML = "Delete Book";
-    deleteBtn.classList.add('delete-button');
-    newCard.appendChild(deleteBtn);
-    deleteBtn.addEventListener('click', () => {
-     cardsDiv.removeChild(newCard); //removes the newCard since it is a child of cardsDiv
-    });
-  }
+  
 }
 
 addBookBtn.addEventListener('click', () => {
@@ -79,11 +97,14 @@ submitBtn.addEventListener('click', () => {
   if(document.getElementById('read').checked == true){readOrNot = 'Yes';}
   else if(document.getElementById('notRead').checked == true){readOrNot = 'No';}
   
+  newCard = document.createElement('div'); //this is needed so that the removeChild in the deleteBtn function knows which card to delete.
+
   myLibrary.push(title);
   console.log(myLibrary);
-  myLibrary[myLibrary.length-1] = new Book(title, author, pages, readOrNot, myLibrary.length-1); //creates an object based on name of title that is store in array
+  myLibrary[myLibrary.length-1]= new Book(title, author, pages, readOrNot, myLibrary.length-1, newCard); //creates an object based on name of title that is store in array
   myLibrary[myLibrary.length-1].createCard();
 
+ 
   myLibrary[myLibrary.length-1].createDeleteBtn();
   document.documentElement.style.setProperty('--display', 'none'); //this makes the form disappear after the submit button is clicked
 
