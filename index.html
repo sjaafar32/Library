@@ -12,13 +12,16 @@
             <div id="book-form">
                 <form>
                     <h1>Enter Book Info</h1>
-                    <input class = "input-bar" id = "input-title" type="text" placeholder="Title">
-                    <input class = "input-bar" id = "input-author" type="text" placeholder="Author">
-                    <input class = "input-bar" id = "input-pages" type="text" placeholder="Pages">
-                    <label>
-                        <input class = "radio-btn" id = "read" type = "radio" name = "read" value = "read">Read
-                        <input style="margin-left: 20px;" class = "radio-btn" id ="notRead" type = "radio" name = "read" value = "notRead">Not Read
-                    </label>
+                    <input class = "input-bar" id = "input-title" type="text" placeholder="Title" required>
+                    <input class = "input-bar" id = "input-author" type="text" placeholder="Author" required>
+                    <input class = "input-bar" id = "input-pages" type="text" placeholder="Pages" required>
+                    
+                    <fieldset>
+                    <legend>Read Book?<abbr title="This field is mandatory" aria-label="required">*</abbr></legend>
+                        <input class = "radio-btn" id = "read" type = "radio" name = "read" value = "read" required><label for="read">Read</label>
+                        <input style="margin-left: 20px;" required class = "radio-btn" id ="notRead" type = "radio" name = "read" value = "notRead" required><label for="notRead">Not Read</label>
+                    </fieldset>
+                    
                     <div class="submit-cancel-div">
                         <button class = "cancel" type = "button">Cancel</button>
                         <button class = "submit" type = "button">Submit</button>
