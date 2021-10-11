@@ -61,7 +61,7 @@ form h1 {
     display: flex;
     flex-direction: column;
     width: 30rem;
-    height: 40rem;
+    height: 46.4rem;
     border-radius: 10px;
     background-color: rgb(145, 226, 250);
     position: absolute;
@@ -94,7 +94,7 @@ form h1 {
 }
 
 input:invalid {
-    border: 2px solid red;
+    border: 1px solid red;
 }
 
 fieldset {

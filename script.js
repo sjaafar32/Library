@@ -2,6 +2,7 @@ const cardsDiv = document.getElementById('card-div');
 const submitBtn = document.getElementsByClassName('submit')[0];
 const cancelBtn = document.getElementsByClassName('cancel')[0];
 const addBookBtn = document.getElementById('add-book');
+const form = document.getElementById('form');
 
 let myLibrary = [];
 
@@ -80,18 +81,19 @@ addBookBtn.addEventListener('click', () => {
   document.documentElement.style.setProperty('--display', 'block'); //this makes the form visible after the add button is clicked
 });
 
-submitBtn.addEventListener('click', () => {
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
   const title = document.getElementById('input-title').value; //.value is the input
   const author = document.getElementById('input-author').value;
   const pages = document.getElementById('input-pages').value;
 
-  //if(title == '' || author == '' || pages == ''){alert('Do not leave any of the fields blank'); return;}
+  if(title == '' || author == '' || pages == ''){alert('Do not leave any of the fields blank'); return;}
   
-  /*if(document.getElementById('read').checked == false &&
+  if(document.getElementById('read').checked == false &&
   document.getElementById('notRead').checked == false){
     alert(`Please select either "Read" or "Not Read"`);
     return;
-  } */
+  } 
 
   let readOrNot;
   if(document.getElementById('read').checked == true){readOrNot = 'Yes';}
